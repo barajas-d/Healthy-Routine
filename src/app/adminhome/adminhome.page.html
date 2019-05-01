@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>JaveSalud Admin</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list no-lines>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Nutrición básica</ion-card-title>
+        <ion-card-subtitle>Mejora tus hábitos almenticios</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+          Los cambios repentinos y radicales en los hábitos de alimentación, como no comer más que sopa de repollo, pueden llevar a una pérdida de peso a corto plazo. Pero estos cambios exagerados no son saludables ni buenos y no ayudarán en el largo plazo. Para mejorar los hábitos de alimentación de manera permanente, se necesita un enfoque en el que Reflexione, Sustituya y Refuerce.      </ion-card-content>
+      <img src="https://firebasestorage.googleapis.com/v0/b/javesaludprueba.appspot.com/o/batidoverde.jpg?alt=media&token=e58b5d35-cec9-47c7-918f-f555eee70d51"/>
+    </ion-card>
+ </ion-list>
+
+ <ion-menu contentId="content1" side="start">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menú Admin</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-item (click)="nutricionClick()">
+          <ion-icon name="nutrition"></ion-icon>
+        Nutrición
+      </ion-item>
+      <ion-item (click)="deporteClick()">  
+          <ion-icon name="fitness"></ion-icon>
+        Ejercicio
+      </ion-item>
+      <ion-item (click)="reporteClick()">
+             <ion-icon name="list-box"></ion-icon>
+         Reporte general
+        </ion-item>
+        <ion-item (click)="salir()">
+            <ion-icon name="power"></ion-icon>
+        Salir
+       </ion-item>
+
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+  <ion-router-outlet id="content1" main></ion-router-outlet>
+
+</ion-content>
+
+
+  
+
+
+

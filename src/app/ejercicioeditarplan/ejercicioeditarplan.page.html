@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+   <h3>Editar plan</h3>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="ejercicionadmin"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+<ion-list>
+  <ion-item>
+    <ion-label position="floating">
+       <ion-icon name="arrow-round-forward"></ion-icon>
+        Nombre del plan
+    </ion-label>
+    <ion-input id="inputnombre" type="text" [(ngModel)]="plan.nombre"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">
+      <ion-icon name="clipboard"></ion-icon>
+      Objetivo
+    </ion-label>
+  <ion-input id="inputobjetivo"  type="text" [(ngModel)]="plan.objetivo" ></ion-input>
+</ion-item>
+
+<ion-item>
+    <ion-label position="floating">
+      <ion-icon name="link"></ion-icon>
+      Link imagen
+    </ion-label>
+  <ion-input id="inputimagen"  type="text" [(ngModel)]="plan.imagen" ></ion-input>
+</ion-item>
+</ion-list>
+
+<ion-list> 
+<h1>
+  Ejercicios
+</h1> 
+<ion-item *ngFor="let item of itemsEjercicio | async">
+   <ion-card (swipe)="elementoSeleccionado(item,item.key)" (click)="elementoSeleccionado(item,item.key)">
+   <ion-card-header>
+     <ion-card-title>Nombre del ejercicio: {{item.nombre}}</ion-card-title>
+     <ion-card-subtitle>Descripción del ejercicio: {{item.descripcion}}</ion-card-subtitle>
+   </ion-card-header>
+   <ion-card-content>
+   </ion-card-content>
+   <img src={{item.imagen}}/>
+ </ion-card>
+
+</ion-item>
+</ion-list>  
+<div clas="botones">
+    <ion-button color="light" (click)="actualizarPlan(plan)">
+        <ion-icon name="refresh"></ion-icon>
+      Actualizar plan</ion-button>
+    <ion-button color="dark" (click)="volver()">Atrás</ion-button>
+</div>
+  
+</ion-content>

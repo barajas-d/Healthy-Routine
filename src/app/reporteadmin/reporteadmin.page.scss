@@ -1,0 +1,32 @@
+
+$colors: (
+    primary:    #f185cf,
+    white: 			#ffffff,
+    secondary:  #32db64,
+    danger:     #f53d3d,
+    light:      #f4f4f4,
+    dark:       #222,
+    favorite:   #69BB7B,
+    twitter:    #53ACEB,
+    github:     #000000,
+    instagram:  #235D8D,
+    facebook:   #307bbe,
+    google:     #fd5459,
+    vibrant:    #663399
+  );
+
+.ios, .md {
+
+    page-home {
+
+        .scroll-content {
+            background-color: map-get($colors, facebook);
+        }
+
+        ion-card-header {
+            font-weight: bold;
+        }
+
+    }
+
+}

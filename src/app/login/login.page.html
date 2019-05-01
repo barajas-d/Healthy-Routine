@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>JaveSalud Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+   <img src="https://firebasestorage.googleapis.com/v0/b/javesaludprueba.appspot.com/o/logo.jpg?alt=media&token=eb660f48-e880-47e3-9329-2ae16aa22f36">
+  <form [formGroup]='loginForm'>
+    <ion-list>
+
+        <ion-item>
+          <ion-label position="floating">
+              <ion-icon name="mail"></ion-icon>
+               Email
+          </ion-label>
+          <ion-input id="inputema" formControlName="email" type="text" [(ngModel)]="usuario.email"></ion-input>
+        </ion-item>
+        
+        <div class="error-messages">
+            <ng-container *ngFor="let error of error_messages.email">
+              <div class="error-message" *ngIf="loginForm.get('email').hasError(error.type) && (loginForm.get('password').dirty || loginForm.get('password').touched)">
+                {{error.message}}
+              </div>
+            </ng-container>
+          </div>
+
+
+        <ion-item>
+            <ion-label position="floating">
+               <ion-icon name="key"></ion-icon>
+              Contraseña
+            </ion-label>
+          <ion-input id="inputpasswo" formControlName="password" type="password" [(ngModel)]="usuario.password" ></ion-input>
+        </ion-item>
+        
+        <div class="error-messages">
+            <ng-container *ngFor="let error of error_messages.password">
+              <div class="error-message" *ngIf="loginForm.get('password').hasError(error.type) && (loginForm.get('email').dirty || loginForm.get('email').touched)">
+                {{error.message}}
+              </div>
+            </ng-container>
+          </div>
+
+
+    </ion-list>
+
+    <div class="botones">
+      <ion-button [disabled]="!loginForm.valid" color="dark" (click)="login(usuario)">Login</ion-button>
+      <ion-button color="light" (click)="registro()">Registro</ion-button>
+    </div> 
+  </form>
+</ion-content>

@@ -1,0 +1,42 @@
+<ion-header>
+    <ion-toolbar>
+     <h3>Nutrición admin</h3>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="adminhome"></ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content padding>
+  <div class="presentacion">
+    <h1>Bienvenido a nutrición</h1>
+  <ion-button color="light" (click)="agregarDieta()">
+      <ion-icon name="add-circle-outline"></ion-icon>
+
+    Crear nueva dieta</ion-button>
+  <ion-button color="dark" (click)="agregarPlato()">
+      <ion-icon name="add-circle-outline"></ion-icon>
+
+    Crear nuevo plato</ion-button>
+  </div>
+  
+   
+  <ion-list>  
+     <ion-item *ngFor="let item of items | async ">
+      <ion-card  (swipe)="elementoSeleccionado(item,item.key)" (click)="elementoSeleccionado(item,item.key)">
+        <ion-card-header>
+          <ion-card-title>Nombre de la dieta: {{item.nombre}}</ion-card-title>
+          <ion-card-subtitle>Descripción de la dieta: {{item.objetivo}}</ion-card-subtitle>
+
+        </ion-card-header>
+      <ion-card-content>
+      </ion-card-content>
+        <img src={{item.imagen}}/>
+      </ion-card>
+     </ion-item>
+   </ion-list>
+
+
+
+  <ion-button color="light" (click)="atras()">Atrás</ion-button>
+</ion-content>

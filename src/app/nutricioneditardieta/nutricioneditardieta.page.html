@@ -1,0 +1,62 @@
+<ion-header>
+    <ion-toolbar>
+     <h3>Editar dieta</h3>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="nutricionadmin"></ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content padding>
+
+  <ion-list>
+    <ion-item>
+      <ion-label position="floating">
+         <ion-icon name="arrow-round-forward"></ion-icon>
+          Nombre de la dieta
+      </ion-label>
+      <ion-input id="inputnombre" type="text" [(ngModel)]="dieta.nombre"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">
+        <ion-icon name="clipboard"></ion-icon>
+        Objetivo
+      </ion-label>
+    <ion-input id="inputobjetivo"  type="text" [(ngModel)]="dieta.objetivo" ></ion-input>
+  </ion-item>
+
+  <ion-item>
+      <ion-label position="floating">
+        <ion-icon name="link"></ion-icon>
+        Link imagen
+      </ion-label>
+    <ion-input id="inputimagen"  type="text" [(ngModel)]="dieta.imagen" ></ion-input>
+  </ion-item>
+</ion-list>
+  
+<ion-list> 
+  <h1>
+    Platos
+  </h1> 
+  <ion-item *ngFor="let item of itemsPlato | async">
+     <ion-card (swipe)="elementoSeleccionado(item,item.key)" (click)="elementoSeleccionado(item,item.key)">
+     <ion-card-header>
+       <ion-card-title>Nombre del plato: {{item.nombre}}</ion-card-title>
+       <ion-card-subtitle>Descripción del plato: {{item.descripcion}}</ion-card-subtitle>
+     </ion-card-header>
+     <ion-card-content>
+     </ion-card-content>
+     <img src={{item.imagen}}/>
+   </ion-card>
+  
+  </ion-item>
+</ion-list>  
+  <div clas="botones">
+      <ion-button color="light" (click)="actualizardieta(dieta)">
+          <ion-icon name="refresh"></ion-icon>
+        Actualizar dieta</ion-button>
+      <ion-button color="dark" (click)="volver()">Atrás</ion-button>
+  </div>
+    
+</ion-content>

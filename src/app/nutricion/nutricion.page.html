@@ -1,0 +1,37 @@
+<ion-header>
+    <ion-toolbar>
+     <h3>Nutrición</h3>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="userhome"></ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content padding>
+  <h1>Bienvenido a nutrición</h1>
+
+   <ion-list>  
+     <ion-item *ngFor="let item of items | async">
+        <ion-card (swipe)="elementoSeleccionado(item,item.key)" (click)="elementoSeleccionado(item,item.key)">
+        <ion-card-header>
+        
+          <ion-card-title>Nombre de la dieta: {{item.nombre}}</ion-card-title>
+          <ion-card-subtitle>Descripción de la dieta: {{item.objetivo}}</ion-card-subtitle>
+
+        </ion-card-header>
+            <img src="https://firebasestorage.googleapis.com/v0/b/javesaludprueba.appspot.com/o/recomendada.jpg?alt=media&token=dbea22ac-1561-425a-b9e3-cbe724d4ec55">
+        <ion-card-content>
+            <img src={{item.imagen}}/>
+        </ion-card-content>
+            <img src="https://firebasestorage.googleapis.com/v0/b/javesaludprueba.appspot.com/o/5estrellas.png?alt=media&token=af5e7116-6ad9-490a-aee2-841dcd358f92">
+        <h1>
+          -----------------------------------------------
+        </h1>
+       
+
+      </ion-card>
+     </ion-item>
+   </ion-list>
+
+  <ion-button color="light" (click)="atras()">Atrás</ion-button>
+</ion-content>

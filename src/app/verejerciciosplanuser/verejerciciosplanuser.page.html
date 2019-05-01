@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+   <h3>Ver ejercicios</h3>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="ejercicio"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>  
+   <ion-item *ngFor="let item of listaEjerciciosRef$ | async">
+      <ion-card>
+      <ion-card-header>
+          <ion-card-title>Nombre del ejercicio: {{item.nombre}}</ion-card-title>
+          <ion-card-subtitle>Descripción del ejercicio: {{item.descripcion}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+      </ion-card-content>
+      <img src={{item.imagen}}/>
+    </ion-card>
+   
+   </ion-item>
+ </ion-list>
+ <ion-button color="light" (click)="atras()">Atrás</ion-button>
+
+</ion-content>

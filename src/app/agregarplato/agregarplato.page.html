@@ -1,0 +1,45 @@
+<ion-header>
+    <ion-toolbar>
+     <h3>Crear plato</h3>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="nutricionadmin"></ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content padding>
+    <ion-list>
+        <ion-item>
+          <ion-label position="floating">
+             <ion-icon name="mail"></ion-icon>
+              Nombre del plato
+          </ion-label>
+          <ion-input id="inputnombreplato" type="text" [(ngModel)]="plato.nombre"></ion-input>
+        </ion-item>
+  
+        <ion-item>
+            <ion-label position="floating">
+               <ion-icon name="mail"></ion-icon>
+                Descripción
+            </ion-label>
+            <ion-input id="inputdescripcionplato" type="text" [(ngModel)]="plato.descripcion"></ion-input>
+          </ion-item>
+  
+          <ion-item>
+              <ion-label position="floating">
+                 <ion-icon name="link"></ion-icon>
+                 Link imagen
+              </ion-label>
+              <ion-input id="inputimagenplato" type="text" [(ngModel)]="plato.imagen"></ion-input>
+            </ion-item>
+    </ion-list>
+
+    <div class="botones">
+      <ion-button color="dark" (click)="agregarPlato(plato)">
+          <ion-icon name="add-circle-outline"></ion-icon>
+        Agregar plato</ion-button>
+     
+    </div>
+
+    
+</ion-content>

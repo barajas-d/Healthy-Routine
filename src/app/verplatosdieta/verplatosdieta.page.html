@@ -1,0 +1,27 @@
+<ion-header>
+    <ion-toolbar>
+     <h3>Ver platos</h3>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="nutricionadmin"></ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content padding>
+    <ion-list>  
+     <ion-item *ngFor="let item of listaPlatosRef$ | async">
+        <ion-card (click)="elementoSeleccionado(item,item.key)"> 
+        <ion-card-header>
+          <ion-card-title>Nombre del plato: {{item.nombre}}</ion-card-title>
+          <ion-card-subtitle>Descripción del plato: {{item.descripcion}}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+        </ion-card-content>
+        <img src={{item.imagen}}/>
+      </ion-card>
+     
+     </ion-item>
+   </ion-list>
+   <ion-button color="light" (click)="atras()">Atrás</ion-button>
+
+</ion-content>

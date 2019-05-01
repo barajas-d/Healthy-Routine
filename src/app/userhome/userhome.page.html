@@ -1,0 +1,173 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Healthy Routine</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-menu contentId="content2" side="start">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Menú principal</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-item (click)="nutricionUserClick()">
+          <ion-icon name="nutrition"></ion-icon>
+        Nutrición
+      </ion-item>
+      <ion-item (click)="ejercicioClick()">
+          <ion-icon name="fitness"></ion-icon>
+        Ejercicio</ion-item>
+        <ion-item>
+            <ion-icon name="logo-apple"></ion-icon>
+          Mis dietas</ion-item>
+          <ion-item>
+              <ion-icon name="heart"></ion-icon>
+            Mis planes</ion-item>
+      <ion-item>
+          <ion-icon name="help"></ion-icon>
+        ¿Qué es JaveSalud?</ion-item>
+      <ion-item (click)="micuentaClick()">
+          <ion-icon name="settings"></ion-icon>
+        Mi cuenta</ion-item>
+        <ion-item (click)="salir()">
+            <ion-icon name="power"></ion-icon>
+          Salir</ion-item>
+     
+    </ion-list>
+  </ion-content>
+</ion-menu>
+<ion-router-outlet id="content2" main></ion-router-outlet>
+
+
+<ion-content overflow-scroll="true" scrollX="true" scrollY="true">
+  <ion-list no-lines>       
+      <div *ngIf="usuario$ | async; let items; else loading">
+          <ul>
+            <li *ngFor="let item of items">
+                Bienvenido(a) {{ item.payload.val().nombres }}
+              
+            </li>
+          </ul>
+          <div *ngIf="items.length === 0">No results, try clearing filters</div>
+      </div>
+      <img src="https://firebasestorage.googleapis.com/v0/b/javesaludprueba.appspot.com/o/perfil.png?alt=media&token=58aaafe4-f145-46b2-9b3c-410763be57ac" class="center">
+      <ion-progress-bar value="0.25" buffer="0.25"></ion-progress-bar>
+      <h4> {{ viewTitle }}</h4>
+
+       <!-- Card for adding a new event -->
+      <div class="tood">
+          <ion-col size="4">   
+              <ion-button (click)="today()">Hoy</ion-button>
+            </ion-col>
+      </div>
+      
+    <ion-row>
+        <ion-col size="4">
+            <ion-button expand="block" [color]="calendar.mode == 'month' ? 'primary' : 'secondary'" (click)="changeMode('month')">Mes</ion-button>
+          </ion-col>
+          <ion-col size="4">
+            <ion-button expand="block" [color]="calendar.mode == 'week' ? 'primary' : 'secondary'" (click)="changeMode('week')">Semana</ion-button>
+          </ion-col>
+          <ion-col size="4">
+            <ion-button expand="block" [color]="calendar.mode == 'day' ? 'primary' : 'secondary'" (click)="changeMode('day')">Día</ion-button>
+          </ion-col>
+      <!-- Move back one screen of the slides -->
+      <ion-col size="6" text-left>
+        <ion-button fill="clear" (click)="back()">
+          <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-col>
+      <!-- Move forward one screen of the slides -->
+      <ion-col size="6" text-right>
+        <ion-button fill="clear" (click)="next()">
+          <ion-icon name="arrow-forward" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+              <calendar 
+              [eventSource]="eventSource" 
+              [calendarMode]="calendar.mode" 
+              [currentDate]="calendar.currentDate"
+              (onEventSelected)="onEventSelected($event)"
+              (onTitleChanged)="onViewTitleChanged($event)"
+              (onTimeSelected)="onTimeSelected($event)" 
+              startHour="6"
+              endHour="20"
+              step="30"
+              startingDayWeek="1">
+              </calendar>
+              <ion-card>
+                  <ion-card-header tappable (click)="collapseCard = !collapseCard">
+                    <ion-card-title>Nuevo evento</ion-card-title>
+                  </ion-card-header>
+                  <ion-card-content *ngIf="collapseCard">
+                    <ion-item>
+                      <ion-input type="text" placeholder="Título" [(ngModel)]="event.title"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                      <ion-input type="text" placeholder="Descripción" [(ngModel)]="event.desc"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                      <ion-label>Inicio</ion-label>
+                      <ion-datetime displayFormat="MM/DD/YYYY HH:mm" pickerFormat="MMM D:HH:mm" [(ngModel)]="event.startTime" [min]="minDate"></ion-datetime>
+                    </ion-item>
+                    <ion-item>
+                      <ion-label>Fin</ion-label>
+                      <ion-datetime displayFormat="MM/DD/YYYY HH:mm" pickerFormat="MMM D:HH:mm" [(ngModel)]="event.endTime" [min]="minDate"></ion-datetime>
+                    </ion-item>
+                    <ion-item>
+                      <ion-label>¿Todo el día?</ion-label>
+                      <ion-checkbox [(ngModel)]="event.allDay"></ion-checkbox>
+                    </ion-item>
+                    <ion-button fill="outline" expand="block" (click)="addEvent()" [disabled]="event.title == ''">Agregar evento</ion-button>
+               
+                  </ion-card-content>
+                </ion-card>
+     
+ </ion-list>
+
+ <div class="my-tabs">
+    <div class="my-tabs-inner">
+      <ng-container *ngIf="tab === 'calendar'">
+        Your calendar content
+      </ng-container>
+
+      <ng-container *ngIf="tab === 'speakers'">
+        Your speakers content
+      </ng-container>
+
+      <ng-container *ngIf="tab === 'map'">
+        Your map content
+      </ng-container>
+    </div>
+
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button >
+        <ion-icon name="home"></ion-icon>
+        <ion-label>Home</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button (click)="nutricionUserClick()">
+        <ion-icon name="logo-apple"></ion-icon>
+        <ion-label>Nutrición</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button (click)="ejercicioClick()">
+        <ion-icon name="fitness"></ion-icon>
+        <ion-label>Ejercicio</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+
+  </div>
+</ion-content>
+
+
+
+
