@@ -3,4 +3,9 @@ export interface Plato{
     imagen:string;
     descripcion:string;
     key:string;
+    duracion:string;
+    calorias:string;
+    ingredientes :string [];
+    pasos :string [];
+    tipo:string;
 }

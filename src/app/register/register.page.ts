@@ -41,7 +41,7 @@ export class RegisterPage implements OnInit {
     ],
     'altura':[
       { type: 'required', message: 'La altura es requerida.'},
-      { type: 'pattern', message: 'Por favor ingrese una altura válida en metros. Ejemplo (1,80) (1,64) '}
+      { type: 'pattern', message: 'Por favor ingrese una altura válida en metros. Ejemplo (180) (164) '}
     ],
     'nombres':[
       { type: 'required', message: 'El nombre es requerido.'},
@@ -77,7 +77,7 @@ export class RegisterPage implements OnInit {
       peso: new FormControl('',Validators.compose([
         Validators.required,
         Validators.maxLength(3),
-        Validators.pattern('([2-9][0-9])|((1|2)[0-9][0-9])')
+        Validators.pattern('(1[0-9][0-9])|([2-9][0-9])')
       ])),
       altura: new FormControl('',Validators.compose([
         Validators.required,
@@ -115,7 +115,12 @@ export class RegisterPage implements OnInit {
         this.usuario.rol=1;
       }else{
         this.usuario.rol=0;
+        this.usuario.dietas=[];
+        this.usuario.planes=[];
         this.usuario.genero = (<HTMLSelectElement>document.getElementById('genero')).value;
+        this.usuario.meta = (<HTMLSelectElement>document.getElementById('meta')).value;
+        this.usuario.estadofisico = (<HTMLSelectElement>document.getElementById('estadofisico')).value;
+        this.usuario.imc = (this.usuario.peso/(this.usuario.altura*this.usuario.altura));
       }
      const res = await this.afAuth.auth.createUserWithEmailAndPassword(usuario.email,usuario.password);
      if(res){

@@ -68,6 +68,7 @@ export class AgregardietaPage implements OnInit {
         buttons: ['OK']
       });
       await alert.present();
+      this.dieta.objetivo=(<HTMLSelectElement>document.getElementById('meta')).value;
       var valorllave =this.itemsRefDieta.push(dieta).key;
       for(var i=0;i<this.platosSeleccionados.length;i++){
         var llf = this.database.list('dieta/'+valorllave+'/platos').push(this.platosSeleccionados[i]).key;
@@ -78,9 +79,11 @@ export class AgregardietaPage implements OnInit {
        
 
 
-    document.getElementById('inputobjetivo').setAttribute('value',"");
     document.getElementById('inputnombre').setAttribute('value',"");
     document.getElementById('inputimagen').setAttribute('value',"");
+    document.getElementById('inputduracion').setAttribute('value',"");
+    document.getElementById('inputdescripcion').setAttribute('value',"");
+
     }
   }
   volver(){

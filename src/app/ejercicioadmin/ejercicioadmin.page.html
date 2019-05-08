@@ -23,6 +23,9 @@
  
 <ion-list>  
    <ion-item *ngFor="let item of items | async ">
+      <div class="card">
+          <ion-grid style="height: 100%">
+            <ion-row justify-content-center align-items-center style="height: 100%">
     <ion-card  (swipe)="elementoSeleccionado(item,item.key)" (click)="elementoSeleccionado(item,item.key)">
       <ion-card-header>
         <ion-card-title>Nombre del plan: {{item.nombre}}</ion-card-title>
@@ -33,6 +36,9 @@
     </ion-card-content>
       <img src={{item.imagen}}/>
     </ion-card>
+  </ion-row>
+</ion-grid>
+</div>
    </ion-item>
  </ion-list>
 

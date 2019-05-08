@@ -7,4 +7,6 @@ export interface Dieta{
     platos: Plato[];
     visible:boolean;
     vecesSeleccionada:number;
+    duracion:number;
+    descripcion:string;
 }

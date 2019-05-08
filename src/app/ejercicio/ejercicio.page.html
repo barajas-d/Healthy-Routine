@@ -14,7 +14,7 @@
       <div *ngIf="usuario$ | async; let items; else loading">
           <ul>
             <ion-card-subtitle *ngFor="let item of items">
-               {{guardarPlan(item.payload.val().genero, item.payload.val().objetivo, item.payload.val().fisico)}}    
+               {{guardarPlan(item.payload.val().genero, item.payload.val().meta, item.payload.val().estadofisico)}}    
             </ion-card-subtitle>
           </ul>
       </div>
@@ -22,6 +22,9 @@
 
    <ion-list>  
      <ion-item *ngFor="let item of items | async">
+        <div class="card">
+            <ion-grid style="height: 100%">
+              <ion-row justify-content-center align-items-center style="height: 100%">
         <ion-card (click)="elementoSeleccionado(item,item.key)">
         <ion-card-header>
 
@@ -35,6 +38,9 @@
         </ion-card-content>
         <img src={{item.imagen}}/>
       </ion-card>
+    </ion-row>
+  </ion-grid>
+</div>
      </ion-item>
    </ion-list>
 

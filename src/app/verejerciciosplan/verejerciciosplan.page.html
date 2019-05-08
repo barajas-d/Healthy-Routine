@@ -8,20 +8,25 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-list>  
-   <ion-item *ngFor="let item of listaEjerciciosRef$ | async">
-      <ion-card (click)="elementoSeleccionado(item,item.key)"> 
-      <ion-card-header>
-        <ion-card-title>Nombre del ejercicio: {{item.nombre}}</ion-card-title>
-        <ion-card-subtitle>Descripción del ejercicio: {{item.descripcion}}</ion-card-subtitle>
-      </ion-card-header>
-      <ion-card-content>
-      </ion-card-content>
-      <img src={{item.imagen}}/>
-    </ion-card>
-   
-   </ion-item>
- </ion-list>
+  <ion-list>
+    
+
+    <div>
+      <ion-item *ngFor="let item of listaEjerciciosRef$ | async">
+          <ion-card (click)="elementoSeleccionado(item,item.key)"> 
+          <ion-card-header>
+            <ion-card-title>Nombre: {{item.nombre}}</ion-card-title>
+            <ion-card-subtitle>Descripción del ejercicio: {{item.descripcion}}</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+          </ion-card-content>
+          <img src={{item.imagen}}/>
+        </ion-card>
+      
+      </ion-item>
+    </div>
+
+    </ion-list>
  <ion-button color="light" (click)="atras()">Atrás</ion-button>
 
 </ion-content>

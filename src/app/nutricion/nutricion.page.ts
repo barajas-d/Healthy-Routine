@@ -38,6 +38,8 @@ export class NutricionPage implements OnInit {
 
   aux=[];
 
+ 
+
   constructor(public events: Events,public storage: Storage,private actionSheet: ActionSheetController,public router: Router,private database: AngularFireDatabase,private route: ActivatedRoute,private menu: MenuController,public navCtrl: NavController) { 
     let sub = this.route.params.subscribe(params => {
       this.emaile = params['userEmail'];
@@ -46,8 +48,6 @@ export class NutricionPage implements OnInit {
 
     this.listaDietasRef$= this.database.list('dieta').valueChanges();
    var arrayOfKeys = []
-
-
 
    this.items = this.database.list('/dieta',  ref => ref.orderByChild('visible').equalTo(true)).valueChanges();
     this.items.subscribe( valueOfItems => {

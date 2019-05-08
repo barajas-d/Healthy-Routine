@@ -8,6 +8,7 @@ import { Storage } from '@ionic/storage';
 import { Dieta } from '../modelos/dieta';
 import { map, switchMap } from 'rxjs/operators';
 import { Plato } from '../modelos/plato';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-verplatosdieta',
@@ -16,12 +17,12 @@ import { Plato } from '../modelos/plato';
 })
 export class VerplatosdietaPage implements OnInit {
   dieta = {} as Dieta;
+
   nombre;
   key;
   rol;
   email;
   listaPlatosRef$: Observable<any[]>
-
   items2: Observable<any[]>;
   aux = []; 
   constructor(public alertController: AlertController,private actionSheet: ActionSheetController,public router: Router,private route: ActivatedRoute,public storage: Storage,public navCtrl: NavController, private database: AngularFireDatabase) {   
@@ -30,10 +31,10 @@ export class VerplatosdietaPage implements OnInit {
       this.rol=params['rol'];
       this.email=params['email'];
     });
+
     console.log(this.key);
     console.log(this.rol);
     this.listaPlatosRef$ = this.database.list('dieta/'+this.key+'/platos').valueChanges();
-
 
     this.items2 = this.database.list('/dieta/'+this.key+'/platos',  ref => ref.orderByChild('platos')).valueChanges();
     this.items2.subscribe( valueOfItems => {

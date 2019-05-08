@@ -1,7 +1,7 @@
 ion-card{
   display: flex;
   flex-direction: column;
-  width: 70% !important;
+  width: 90% !important;
   margin: 0 !important;
   text-align: center;
   align-items: center;
@@ -31,4 +31,8 @@ rating {
       color: #ffb400;
     }
   }
+}
+.card
+{
+     margin-bottom: 20px !important;
 }

@@ -18,11 +18,28 @@
       </ion-item>
 
       <ion-item>
+          <ion-label position="floating">
+            <ion-icon name="arrow-round-forward"></ion-icon>          
+             Descripción de la dieta
+          </ion-label>
+          <ion-input id="inputdescripcion" type="text" [(ngModel)]="dieta.descripcion"></ion-input>
+        </ion-item>
+
+      <ion-item>
+          <ion-label>Meta</ion-label>
+          <ion-select placeholder="Selecciona una opción" id="meta">
+              <ion-select-option value="Perder peso">Perder peso</ion-select-option>
+            <ion-select-option value="Mantener forma">Mantener forma</ion-select-option>
+            <ion-select-option value="Ganar masa muscular">Ganar masa muscular</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+    <ion-item>
         <ion-label position="floating">
-          <ion-icon name="clipboard"></ion-icon>
-          Objetivo
+          <ion-icon name="clock"></ion-icon>
+          Duración de la dieta (En días)
         </ion-label>
-      <ion-input id="inputobjetivo"  type="text" [(ngModel)]="dieta.objetivo" ></ion-input>
+      <ion-input id="inputduracion"  type="text" [(ngModel)]="dieta.duracion" ></ion-input>
     </ion-item>
 
     <ion-item>
@@ -37,16 +54,49 @@
   <h1>PLATOS</h1>
 
   <ion-list>  
-      <ion-item *ngFor="let item of itemsPlato | async ">
-       <ion-card (swipe)="elementoSeleccionado(item,item.key)" (click)="elementoSeleccionado(item,item.key)">
-         <ion-card-header>
-           <ion-card-title>Nombre del plato: {{item.nombre}}</ion-card-title>
-           <ion-card-subtitle>Descripción del plato: {{item.descripcion}}</ion-card-subtitle>
-         </ion-card-header>
-         <img src={{item.imagen}}/>
-       </ion-card>
-      </ion-item>
-    </ion-list>
+      <div *ngFor="let item of itemsPlato | async ;let i=index" class=category-block>
+
+          <ion-row no-padding class="category-banner">
+            <ion-col text-left button tappable (click)="item.expanded = !item.expanded" aling-self center>
+                {{ item.tipo }}
+            </ion-col>
+          </ion-row>
+  
+          <div *ngIf="item.expanded">
+              <ion-item >
+                  <ion-card > 
+                 <ion-card-header>
+                   <ion-card-title>Nombre del plato: {{item.nombre}}</ion-card-title>
+                   <ion-card-subtitle>Descripción del plato: {{item.descripcion}}</ion-card-subtitle>
+                 </ion-card-header>
+                 <ion-card-content>
+                 </ion-card-content>
+                 <img src={{item.imagen}}/>
+                 <p>
+                   <ion-icon name="clock"></ion-icon>
+                   Tiempo de preparación {{item.duracion}}
+                 </p>
+                 <p>
+                   <ion-icon name="heart"></ion-icon>
+                   Calorias {{item.calorias}}
+                 </p>
+                   <h2>
+                     Ingredientes
+                   </h2>
+                   <div *ngFor="let obj of item.ingredientes">
+                     <td>- {{obj}}</td>
+                   </div>
+                   <h2>
+                     Preparación
+                   </h2>
+                   <div *ngFor="let obj of item.pasos;let i=index">
+                     <td> {{i+1}}. {{obj}}</td>
+                 </div>
+               </ion-card>
+              </ion-item>
+             </div>
+             </div> 
+ </ion-list>
 
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">

@@ -8,8 +8,17 @@
   </ion-header>
 
 <ion-content padding>
-    <ion-list>  
-     <ion-item *ngFor="let item of listaPlatosRef$ | async">
+    <ion-list> 
+      <div *ngFor="let item of listaPlatosRef$ | async ;let i=index" class=category-block>
+
+        <ion-row no-padding class="category-banner">
+          <ion-col text-left button tappable (click)="item.expanded = !item.expanded" aling-self center>
+              {{ item.tipo }}
+          </ion-col>
+        </ion-row>
+
+    <div *ngIf="item.expanded">
+     <ion-item >
         <ion-card (click)="elementoSeleccionado(item,item.key)"> 
         <ion-card-header>
           <ion-card-title>Nombre del plato: {{item.nombre}}</ion-card-title>
@@ -18,9 +27,30 @@
         <ion-card-content>
         </ion-card-content>
         <img src={{item.imagen}}/>
+        <p>
+          <ion-icon name="clock"></ion-icon>
+          Tiempo de preparación {{item.duracion}}
+        </p>
+        <p>
+          <ion-icon name="heart"></ion-icon>
+          Calorias {{item.calorias}}
+        </p>
+          <h2>
+            Ingredientes
+          </h2>
+          <div *ngFor="let obj of item.ingredientes">
+            <td>- {{obj}}</td>
+          </div>
+          <h2>
+            Preparación
+          </h2>
+          <div *ngFor="let obj of item.pasos;let i=index">
+            <td> {{i+1}}. {{obj}}</td>
+        </div>
       </ion-card>
-     
      </ion-item>
+    </div>
+    </div> 
    </ion-list>
    <ion-button color="light" (click)="atras()">Atrás</ion-button>
 

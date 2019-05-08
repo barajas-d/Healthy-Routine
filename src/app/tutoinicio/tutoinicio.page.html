@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>¡Hola, Bienvenido!</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content fullscreen>
+  <ion-slides #slides (ionSlideWillChange)="onSlideChangeStart($event)" pager="false">
+    <ion-slide>
+      <img src="https://firebasestorage.googleapis.com/v0/b/healthy-routine.appspot.com/o/WhatsApp%20Image%202019-05-07%20at%2019.13.48.jpeg?alt=media&token=ab648408-40ef-4079-b0dd-d182415827b0" class="slide-image" />
+    </ion-slide>
+
+    <ion-slide >
+      <img src="https://firebasestorage.googleapis.com/v0/b/healthy-routine.appspot.com/o/ica-slidebox-img-2.png?alt=media&token=d6165ec9-46a3-462c-bd55-fa1a5f53384d" class="slide-image" />
+      <h2 class="slide-title">What is Ionic?</h2>
+      <p>
+        <b>Ionic Framework</b> is an open source SDK that enables developers to build high quality mobile apps with web technologies
+        like HTML, CSS, and JavaScript.</p>
+    </ion-slide>
+
+    <ion-slide>
+      <img src="https://firebasestorage.googleapis.com/v0/b/healthy-routine.appspot.com/o/ica-slidebox-img-3.png?alt=media&token=df56448d-a2bf-4655-9aca-73442c3f21ee" class="slide-image" />
+      <h2 class="slide-title">What is Ionic Pro?</h2>
+      <p>
+        <b>Ionic Pro</b> is a powerful set of services and features built on top of Ionic Framework that brings a totally new
+        level of app development agility to mobile dev teams.</p>
+    </ion-slide>
+
+    <ion-slide>
+      <img src="https://firebasestorage.googleapis.com/v0/b/healthy-routine.appspot.com/o/ica-slidebox-img-4.png?alt=media&token=8556a549-69f3-4604-9c94-1e533636296b" class="slide-image" />
+      <h2 class="slide-title">Ready to Play?</h2>
+      <ion-button fill="clear" (click)="continuar()">
+        Continue
+        <ion-icon slot="end" name="arrow-forward"></ion-icon>
+      </ion-button>
+    </ion-slide>
+  </ion-slides>
+  <div class="botones">
+    <ion-button color="dark" (click)="login()">Login</ion-button>
+    <ion-button color="light" (click)="registro()">Registro</ion-button>
+  </div> 
+</ion-content>

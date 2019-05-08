@@ -9,18 +9,31 @@
 
 <ion-content padding>
   <ion-list>  
-   <ion-item *ngFor="let item of listaEjerciciosRef$ | async">
-      <ion-card>
-      <ion-card-header>
-          <ion-card-title>Nombre del ejercicio: {{item.nombre}}</ion-card-title>
-          <ion-card-subtitle>Descripción del ejercicio: {{item.descripcion}}</ion-card-subtitle>
-      </ion-card-header>
-      <ion-card-content>
-      </ion-card-content>
-      <img src={{item.imagen}}/>
-    </ion-card>
-   
-   </ion-item>
+
+      <div *ngFor="let item of listaEjerciciosRef$ | async ;let i=index" class=category-block>
+
+      <ion-row no-padding class="category-banner">
+          <ion-col text-left button tappable (click)="item.expanded = !item.expanded" aling-self center>
+              {{ item.nombre }}
+          </ion-col>
+       </ion-row>
+
+
+  <div *ngIf="item.expanded">
+    <ion-item >
+        <ion-card>
+        <ion-card-header>
+            <ion-card-title>Nombre: {{item.nombre}}</ion-card-title>
+            <ion-card-subtitle>Descripción del ejercicio: {{item.descripcion}}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+        </ion-card-content>
+        <img src={{item.imagen}}/>
+      </ion-card>
+    
+    </ion-item>
+  </div>
+</div>
  </ion-list>
  <ion-button color="light" (click)="atras()">Atrás</ion-button>
 

@@ -146,7 +146,7 @@ export class ReporteadminPage implements OnInit {
             labels: this.nombredietas,
             datasets: [
                 {
-                    label: "My First dataset",
+                    label: 'Número de veces seleccionada por los usuarios',
                     fill: false,
                     lineTension: 0.1,
                     backgroundColor: "rgba(75,192,192,0.4)",

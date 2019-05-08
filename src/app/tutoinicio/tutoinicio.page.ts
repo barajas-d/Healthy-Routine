@@ -6,13 +6,13 @@ import { MenuController, IonSlides } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 
 @Component({
-  selector: 'app-tuto',
-  templateUrl: './tuto.page.html',
-  styleUrls: ['./tuto.page.scss'],
+  selector: 'app-tutoinicio',
+  templateUrl: './tutoinicio.page.html',
+  styleUrls: ['./tutoinicio.page.scss'],
 })
-export class TutoPage implements OnInit {
+export class TutoinicioPage implements OnInit {
+
   ngOnInit() {
-    
   }
   showSkip = true;
   emaile;
@@ -25,11 +25,7 @@ export class TutoPage implements OnInit {
     public storage: Storage,
     private route: ActivatedRoute
   ) {
-    let sub = this.route.params.subscribe(params => {
-      this.emaile = params['userEmail'];
-     });
-     this.usuario.email=this.emaile;
-
+    
   }
 
   startApp() {
@@ -59,7 +55,14 @@ export class TutoPage implements OnInit {
     this.menu.enable(true);
   }
   continuar(){
-    this.router.navigate(['/userhome',{ userEmail: this.usuario.email}]);
+    this.router.navigate(['/login',{}]);
+
+  }
+  login(){
+    this.router.navigate(['/login',{}]);
+  }
+  registro(){
+    this.router.navigate(['/register',{}]);
 
   }
 }

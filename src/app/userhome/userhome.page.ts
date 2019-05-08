@@ -103,7 +103,6 @@ export class UserhomePage implements OnInit {
                 }
                 ]
       });
-  
       await alert.present();
   }
 
@@ -149,7 +148,10 @@ export class UserhomePage implements OnInit {
   micuentaClick(){
     this.router.navigate(['/micuenta',{ userEmail: this.usuario.email}]);
   }
+misdietasClick(){
+  this.router.navigate(['/misdietas',{ userEmail: this.usuario.email}]);
 
+}
   ejercicioClick(){
     this.router.navigate(['/ejercicio',{ userEmail: this.usuario.email}]);  
   }

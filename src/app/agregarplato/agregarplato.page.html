@@ -19,12 +19,39 @@
   
         <ion-item>
             <ion-label position="floating">
-               <ion-icon name="mail"></ion-icon>
+               <ion-icon name="information-circle-outline"></ion-icon>
                 Descripción
             </ion-label>
             <ion-input id="inputdescripcionplato" type="text" [(ngModel)]="plato.descripcion"></ion-input>
           </ion-item>
+
+          
+        <ion-item>
+            <ion-label position="floating">
+               <ion-icon name="clock"></ion-icon>
+                Duración de preparación
+            </ion-label>
+            <ion-input id="inputduracion" type="text" [(ngModel)]="plato.duracion"></ion-input>
+          </ion-item>
+
+          
+        <ion-item>
+            <ion-label position="floating">
+               <ion-icon name="arrow-dropright"></ion-icon>
+                Calorias
+            </ion-label>
+            <ion-input id="inputcalorias" type="text" [(ngModel)]="plato.calorias"></ion-input>
+          </ion-item>
   
+              <ion-item>
+                <ion-label>Tipo de plato</ion-label>
+                <ion-select placeholder="Selecciona una opción" id="tipo">
+                  <ion-select-option value="Desayuno">Desayuno</ion-select-option>
+                  <ion-select-option value="Almuerzo">Almuerzo</ion-select-option>
+                  <ion-select-option value="Comida">Comida</ion-select-option>
+                </ion-select>
+              </ion-item>
+
           <ion-item>
               <ion-label position="floating">
                  <ion-icon name="link"></ion-icon>
@@ -32,6 +59,57 @@
               </ion-label>
               <ion-input id="inputimagenplato" type="text" [(ngModel)]="plato.imagen"></ion-input>
             </ion-item>
+
+            <ion-item>
+                <ion-label position="floating">
+                   <ion-icon name="create"></ion-icon>
+                   Ingrediente # {{ningredientes}}
+                </ion-label>
+                <ion-input id="inputingrediente" type="text" [(ngModel)]="ingrediente"></ion-input>
+              </ion-item>
+              <ion-button color="light" (click)="agregarIngrediente(plato)">
+                  <ion-icon name="add"></ion-icon>
+                Agregar ingrediente
+              </ion-button>
+                <p>
+                  INGREDIENTES
+                </p>
+              <ion-list>
+                <ion-item *ngFor="let item of plato.ingredientes" (click)="elementoSeleccionado(item)">
+                     <a>
+                         - {{item}}
+                      </a>
+                </ion-item>
+              </ion-list>
+
+
+              <ion-item>
+                  <ion-label position="floating">
+                     <ion-icon name="create"></ion-icon>
+                     Paso # {{npasos}}
+                  </ion-label>
+                  <ion-input id="inputpasos" type="text" [(ngModel)]="paso"></ion-input>
+                </ion-item>
+                <ion-button color="light" (click)="agregarPaso(plato)">
+                    <ion-icon name="add"></ion-icon>
+                  Agregar paso
+                </ion-button>
+                  <p>
+                   PASOS DE LA PREPARACIÓN
+                  </p>
+                <ion-list>
+                  <ion-item *ngFor="let item of plato.pasos;let i=index" (click)="elementoSeleccionado2(item)">
+                        <p>
+                            {{aux[i]}} . {{item}}
+                          </p>
+                     
+                  </ion-item>
+                </ion-list>
+
+
+
+
+
     </ion-list>
 
     <div class="botones">

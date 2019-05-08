@@ -3,7 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'tutoinicio', pathMatch: 'full' },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
   { path: 'register', loadChildren: './register/register.module#RegisterPageModule' },
   { path: 'home', loadChildren: './home/home.module#HomePageModule' },
@@ -31,6 +31,8 @@ const routes: Routes = [
   { path: 'reporteadmin', loadChildren: './reporteadmin/reporteadmin.module#ReporteadminPageModule' },
   { path: 'tuto', loadChildren: './tuto/tuto.module#TutoPageModule' },
   { path: 'terminos', loadChildren: './terminos/terminos.module#TerminosPageModule' },
+  { path: 'tutoinicio', loadChildren: './tutoinicio/tutoinicio.module#TutoinicioPageModule' },
+  { path: 'misdietas', loadChildren: './misdietas/misdietas.module#MisdietasPageModule' },
 ];
 @NgModule({
   imports: [
